@@ -14,15 +14,21 @@ GDP_data['GDP_pct_change_2008-2018'] = GDP_data.groupby('Entity')['GDP per capit
 GDP_data = GDP_data.dropna()
 
 happiness_data = happiness_data[happiness_data['Year'].isin(allowed_years)]
+happiness_data['Happiness_pct_change_2008-2018'] = happiness_data.groupby('Entity')['Life satisfaction in Cantril Ladder (World Happiness Report 2022)'].pct_change()
+happiness_data = happiness_data.dropna()
 
-print(happiness_data)
-#print(GDP_data)
+# pd.set_option('display.max_columns', None)
+#print(happiness_data)
+merged_df = pd.merge(GDP_data, happiness_data, on='Entity')
+# print(merged_df)
 
-# # Adding Title to the Plot
-# plt.title("Scatter Plot")
+# Adding Title to the Plot
+plt.title("Scatter Plot")
 
-# # Setting the X and Y labels
-# plt.xlabel('Change in GDP between 2008-2018')
-# plt.ylabel('Change in Happiness Index between 2008-2018')
+# Setting the X and Y labels
+plt.xlabel('Change in GDP between 2008-2018')
+plt.ylabel('Change in Happiness Index between 2008-2018')
 
-# plt.show()
+merged_df.plot(kind='scatter',x='GDP_pct_change_2008-2018',y='Happiness_pct_change_2008-2018',color='red')
+
+plt.show()
