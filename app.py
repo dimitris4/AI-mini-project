@@ -17,6 +17,19 @@ merged_df = pd.merge(GDP_data, happiness_data, on='Entity')
 merged_df['GDP_pct_change_2008-2018'] = merged_df['GDP_pct_change_2008-2018'] * 100
 merged_df['Happiness_pct_change_2008-2018'] = merged_df['Happiness_pct_change_2008-2018'] * 100
 
+correlation_df = merged_df['Happiness_pct_change_2008-2018'].corr(merged_df['GDP_pct_change_2008-2018']);
+
+print("Correlation: ")
+print(correlation_df)
+
+mean_happiness_df = merged_df['Happiness_pct_change_2008-2018'].mean()
+mean_gdp_df = merged_df['GDP_pct_change_2008-2018'].mean()
+
+print('Mean Happiness:')
+print(mean_happiness_df)
+print('Mean GDP: ')
+print(mean_gdp_df)
+
 plt.title("Scatter Plot")
 plt.xlabel('Change in GDP between 2008-2018')
 plt.ylabel('Change in Happiness Index between 2008-2018')
@@ -26,3 +39,5 @@ for index, row in merged_df.iterrows():
     plt.text(int(row['GDP_pct_change_2008-2018']), int(row['Happiness_pct_change_2008-2018']), row['Entity'])
 
 plt.show()
+
+
