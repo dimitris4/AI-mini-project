@@ -22,13 +22,13 @@ correlation_df = merged_df['Happiness_pct_change_2008-2018'].corr(merged_df['GDP
 print("Correlation: ")
 print(correlation_df)
 
-mean_happiness_df = merged_df['Happiness_pct_change_2008-2018'].mean()
-mean_gdp_df = merged_df['GDP_pct_change_2008-2018'].mean()
+mean_happiness_change = merged_df['Happiness_pct_change_2008-2018'].mean()
+mean_gdp_change = merged_df['GDP_pct_change_2008-2018'].mean()
 
 print('Mean Happiness:')
-print(mean_happiness_df)
+print(mean_happiness_change)
 print('Mean GDP: ')
-print(mean_gdp_df)
+print(mean_gdp_change)
 
 plt.title("Scatter Plot")
 plt.xlabel('Change in GDP between 2008-2018')
