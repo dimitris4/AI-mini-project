@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+from scipy import stats
 
 GDP_data = pd.read_csv("gdp-per-capita-in-international-and-market-dollars.csv")
 happiness_data = pd.read_csv("happiness-cantril-ladder.csv")
@@ -18,6 +19,7 @@ merged_df['GDP_pct_change_2008-2018'] = merged_df['GDP_pct_change_2008-2018'] * 
 merged_df['Happiness_pct_change_2008-2018'] = merged_df['Happiness_pct_change_2008-2018'] * 100
 
 correlation_df = merged_df['Happiness_pct_change_2008-2018'].corr(merged_df['GDP_pct_change_2008-2018']);
+correlationStats = stats.pearsonr(merged_df['Happiness_pct_change_2008-2018'],merged_df['GDP_pct_change_2008-2018']);
 
 print("Correlation: ")
 print(correlation_df)
@@ -29,6 +31,8 @@ print('Mean Happiness:')
 print(mean_happiness_change)
 print('Mean GDP: ')
 print(mean_gdp_change)
+print("STATS")
+print(correlationStats)
 
 plt.title("Scatter Plot")
 plt.xlabel('Change in GDP between 2008-2018')
